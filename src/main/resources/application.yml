@@ -7,4 +7,7 @@ spring:
     mongodb:
       host: localhost
       port: 27017
-      database: security
+      database: user
+logging:
+  file:
+    name: security.log
