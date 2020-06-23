@@ -1,0 +1,23 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '8.0.x'
+        java-package: jdk
+        architecture: x64
+    - name: Build Project with Unit Test Cases
+      run: |
+        chmod +x gradlew
+        ./gradlew build
+        var=$(cut -d/ -f3 <<< $GITHUB_REF)
+    - name: Sonarqube Check
+      run: ./gradlew sonarqube -Dsonar.pullrequest.key=$(cut -d/ -f3 <<< $GITHUB_REF) -Dsonar.pullrequest.branch=$GITHUB_HEAD_REF -Dsonar.pullrequest.base=$GITHUB_BASE_REF
