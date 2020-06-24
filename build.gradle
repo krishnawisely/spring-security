@@ -39,12 +39,3 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
-
-sonarqube {
-  properties {
-    property "sonar.projectKey", "krishnawisely_spring-security"
-    property "sonar.organization", "krishnawisely"
-    property "sonar.host.url", "https://sonarcloud.io"
-    property "sonar.login", "98815c960bdf8b67312392c82ce86a8dae5f521a"
-  }
-}
